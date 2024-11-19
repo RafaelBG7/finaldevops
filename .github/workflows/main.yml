@@ -21,6 +21,9 @@ jobs:
       with:
         python-version: '3.8'
 
+    - name: List files in the directory
+      run: ls -la
+
     - name: Install dependencies
       run: |
         python -m venv venv
