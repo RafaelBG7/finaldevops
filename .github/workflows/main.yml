@@ -30,8 +30,8 @@ jobs:
 
     - name: Run tests
       run: |
-        # Adicione testes aqui, caso tenha.
-        echo "No tests configured yet."
+        pip install pytest
+        pytest --maxfail=5 --disable-warnings
 
   deploy:
     runs-on: ubuntu-latest
