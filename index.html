@@ -3,27 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Cadastro de Usuários</title>
 </head>
 <body>
-    <h1>Cadastro</h1>
-    <form id="cadastro-form">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required><br>
-        <button type="submit">Cadastrar</button>
-    </form>
+    <div class="container">
+        <h2>Cadastro de Usuários</h2>
+        <form id="userForm">
+            <input type="text" id="username" placeholder="Nome de Usuário" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Senha" required>
+            <input type="date" id="birthdate" placeholder="Data de Nascimento" required>
+            <button type="submit">Cadastrar</button>
+        </form>
+        <div class="message" id="message"></div>
+    </div>
 
     <script>
-        document.getElementById('cadastro-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const nome = document.getElementById('nome').value;
+        document.getElementById('userForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const birthdate = document.getElementById('birthdate').value;
+
             const response = await fetch('/api/cadastrar', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nome })
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, email, password, birthdate })
             });
+
             const result = await response.json();
-            alert(result.message);
+            const messageDiv = document.getElementById('message');
+
+            if (response.ok) {
+                messageDiv.textContent = result.message;
+                messageDiv.style.color = 'green';
+            } else {
+                messageDiv.textContent = result.error;
+                messageDiv.style.color = 'red';
+            }
         });
     </script>
 </body>

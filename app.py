@@ -1,6 +1,7 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -48,6 +49,10 @@ def listar_usuarios():
         "email": user.email,
         "birthdate": user.birthdate
     } for user in users])
+
+@app.route('/')
+def serve_frontend():
+    return send_from_directory(os.path.dirname(os.path.abspath(__file__)), 'index.html')
 
 if __name__ == '__main__':
     with app.app_context():
