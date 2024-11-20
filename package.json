@@ -1,12 +1,7 @@
 {
-    "name": "flask-cadastro",
-    "version": "1.0.0",
-    "description": "Projeto de exemplo para cadastro utilizando Flask",
-    "main": "app.py",
-    "scripts": {
-      "start": "flask run"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {}
+  "name": "flask-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "echo 'Frontend scripts here'"
   }
+}
