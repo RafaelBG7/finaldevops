@@ -25,7 +25,7 @@ def cadastrar():
     if not data or not all(k in data for k in ("username", "email", "password", "birthdate")):
         return jsonify({"error": "Dados inválidos"}), 400
 
-    hashed_password = generate_password_hash(data['password'], method='sha256')
+    hashed_password = generate_password_hash(data['password'], method='pbkdf2:sha256')
 
     new_user = User(
         username=data['username'],
