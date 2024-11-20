@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
@@ -52,7 +52,7 @@ def listar_usuarios():
 
 @app.route('/')
 def serve_frontend():
-    return send_from_directory(os.path.dirname(os.path.abspath(__file__)), 'index.html')
+    return render_template('index.html')
 
 if __name__ == '__main__':
     with app.app_context():
