@@ -31,7 +31,7 @@ jobs:
     - name: Run tests
       run: |
         pip install pytest
-        pytest --maxfail=5 --disable-warnings
+        pytest tests/ --maxfail=5 --disable-warnings
 
   deploy:
     runs-on: ubuntu-latest
